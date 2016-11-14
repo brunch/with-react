@@ -7,7 +7,7 @@ export default class App extends React.Component {
         <h1>&nbsp;</h1>
         <h2>Welcome!</h2>
         <ul>
-          <li><a href="http://brunch.io">Brunch homepage</a></li>
+          <li className="brunch-homepage"><a href="http://brunch.io">Brunch homepage</a></li>
           <li><a href="https://facebook.github.io/react/">React.js homepage</a></li>
         </ul>
       </div>
