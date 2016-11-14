@@ -1,4 +1,4 @@
-# Brunch + React + Babel/ES6
+# Brunch + React + Babel/ES6 + Jest/Enzyme
 
 This is a modern JS skeleton with React for [Brunch](http://brunch.io).
 
