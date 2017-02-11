@@ -18,6 +18,7 @@
     "babel-brunch": "~6.0",
     "babel-preset-latest": "^6",
     "babel-preset-react": "~6.22",
+    "brunch": "^2",
     "clean-css-brunch": "^2",
     "uglify-js-brunch": "^2"
   }
