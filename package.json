@@ -7,19 +7,27 @@
   "repository": "",
   "scripts": {
     "start": "brunch watch --server",
-    "build": "brunch build --production"
+    "prebuild": "npm run std",
+    "build": "brunch build --production",
+    "std": "standard --verbose | snazzy"
   },
   "dependencies": {
-    "react": "^15.4",
-    "react-dom": "^15.4"
+    "atom": "^1.0.0",
+    "glamor": "^2.20.24",
+    "preact": "^7.2.0",
+    "preact-router": "^2.4.1",
+    "ramda": "^0.23.0"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "babel-brunch": "~6.0",
-    "babel-preset-latest": "^6",
+    "babel-plugin-jsx-import": "staydecent/babel-plugin-jsx-import",
+    "babel-plugin-module-resolver": "^2.7.0",
     "babel-preset-react": "~6.22",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "snazzy": "^6.0.0",
+    "standard": "^9.0.2",
     "uglify-js-brunch": "^2"
   }
 }
