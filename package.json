@@ -2,7 +2,7 @@
   "name": "brunch-app",
   "description": "Brunch.io application",
   "private": true,
-  "author": "Brunch",
+  "author": "Adrian Unger",
   "version": "0.0.1",
   "repository": "",
   "scripts": {
@@ -25,9 +25,20 @@
     "babel-plugin-module-resolver": "^2.7.0",
     "babel-preset-react": "~6.22",
     "brunch": "^2",
-    "clean-css-brunch": "^2",
     "snazzy": "^6.0.0",
     "standard": "^9.0.2",
     "uglify-js-brunch": "^2"
+  },
+  "engines": {
+    "npm": ">=3.0.0",
+    "node": ">=6.0.0 <7.0.0"
+  },
+  "standard": {
+    "globals": [
+      "Preact"
+    ],
+    "ignore": [
+      "build"
+    ]
   }
 }
