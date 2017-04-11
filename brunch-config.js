@@ -5,22 +5,23 @@ exports.files = {
       'vendor.js': /^(?!app)/,
       'app.js': /^app/
     }
-  },
-  stylesheets: {joinTo: 'app.css'}
+  }
 }
 
 exports.plugins = {
   babel: {
-    presets: ['env', 'react'],
+    presets: ['es2015', 'react'],
     plugins: [
-      ['babel-plugin-module-resolver', {
+      'transform-es2015-spread',
+      'transform-object-rest-spread',
+      ['module-resolver/lib/index.js', {
         'alias': {
           // This will cause require paths starting with `/` to resolve to the
-          // `src` directory. i.e. `/app.js` resolves to `src/app.js`.
-          '': './src'
+          // `app` directory. i.e. `/app.js` resolves to `app/app.js`.
+          '': './app'
         }
       }],
-      ['./node_modules/babel-plugin-jsx-import/src/index.js', {
+      ['jsx-import/src/index.js', {
         'identifier': 'Preact',
         'moduleName': 'preact'
       }],
