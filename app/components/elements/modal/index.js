@@ -2,7 +2,7 @@ import Portal from 'preact-portal'
 import {dispatch} from '/store'
 import {closeModal} from './actions'
 
-const Modal = ({uid, open, children}) =>
+const Modal = ({uid = 'Modal', open, children}) =>
   open
     ? (
       <Portal into='body'>
