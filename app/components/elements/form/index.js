@@ -2,8 +2,6 @@ import assoc from '/util/assoc'
 import {compose, withState, setNodeName} from '/util/compose'
 import Button from '/components/elements/button'
 
-import {formStyle, labelStyle, fieldStyle} from './styles'
-
 const {cloneElement} = Preact
 
 export const Form = compose(
@@ -34,16 +32,21 @@ export const Form = compose(
     return <form
       onSubmit={(ev) => ev.preventDefault() || onSubmit(data)}
       {...props}
-      {...formStyle}
     >
       {childrenWithProps}
     </form>
   }
 )
 
+export const FormHeading = ({children}) =>
+  <div class='form-heading'>{children}</div>
+
+export const FieldSet = ({className, children}) =>
+  <fieldset class={className || ''}>{children}</fieldset>
+
 export const Field = ({label, name, children, ...props}) =>
   <div>
-    <label htmlFor={name} {...labelStyle}>
+    <label htmlFor={name}>
       <h4>{label}</h4>
     </label>
     {children}
@@ -66,7 +69,6 @@ export const TextField = ({label, name, placeholder, set, data, ...props}) =>
       placeholder={placeholder}
       value={data[name]}
       onChange={(ev) => set(name, ev.target.value)}
-      {...fieldStyle}
     />
   </Field>
 
@@ -78,7 +80,6 @@ export const TextArea = ({label, name, placeholder, set, data, ...props}) =>
       rows={10}
       value={data[name]}
       onChange={(ev) => set(name, ev.target.value)}
-      {...fieldStyle}
     />
   </Field>
 
