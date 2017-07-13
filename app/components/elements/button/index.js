@@ -8,8 +8,8 @@ const Button = ({to, className = '', children}) =>
 const FormButtom = ({className = '', type, children}) =>
   <button type={type} class={'btn ' + className}>{children}</button>
 
-export default function ButtonHoC ({type, children, ...props}) {
+export default function ButtonHoC ({to, type, children, ...props}) {
   return !type
-    ? <Button {...props}>{children}</Button>
-    : <FormButtom type={type} {...props}>{children}</FormButtom>
+    ? <Button to={to} {...props}>{children}</Button>
+    : <FormButtom to={to} type={type} {...props}>{children}</FormButtom>
 }

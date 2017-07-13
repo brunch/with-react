@@ -2,6 +2,8 @@ import atom from 'atom'
 
 import merge from '/util/merge'
 
+import modalReducer from '/components/elements/modal/reducer'
+
 export const SET_URL = 'SET_URL'
 
 const reducer = ({type, payload}, state) => {
@@ -17,10 +19,11 @@ const reducer = ({type, payload}, state) => {
 }
 
 const initialState = {
-  url: window.location.pathname
+  url: window.location.pathname,
+  modals: {}
 }
 
-export const store = atom(reducer, initialState)
+export const store = atom([reducer, modalReducer], initialState)
 export const dispatch = store.dispatch
 export const getState = store.getState
 export const subscribe = store.subscribe

@@ -9,11 +9,11 @@ const Main = compose(
   function componentDidMount () {
     subscribe(() => this.setState(getState()))
   },
-  function render (_, props) {
+  function render (props) {
     console.log('Main', props)
     return (
       <Router>
-        <Home path='/' />
+        <Home path='/' modals={props.modals} />
       </Router>
     )
   }
