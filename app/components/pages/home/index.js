@@ -10,11 +10,15 @@ import {
 import {Row, Column} from '/components/elements/grid'
 import Link from '/components/elements/link'
 import Page from '/components/elements/page'
+import PageTitle from '/components/elements/page-title'
 
 import range from '/util/range'
 
 const Home = ({url}) =>
   <Page>
+    <PageTitle title='With Preact'>
+      <Button>Win!</Button>
+    </PageTitle>
     <div style='max-width: 640px; margin: 1rem auto;'>
       <h1>Hello World</h1>
       <Card className='elevated hover-scale'>
