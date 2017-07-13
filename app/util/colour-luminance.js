@@ -2,7 +2,7 @@ import check from 'check-arg-types'
 
 export default function (hex, lum = 0) {
   check(arguments, ['string', 'number'])
-  
+
   // validate hex string
   hex = hex.replace(/[^0-9a-f]/gi, '')
   if (hex.length < 6) {

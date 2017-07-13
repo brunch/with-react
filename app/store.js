@@ -1,6 +1,6 @@
 import atom from 'atom'
 
-import merge from 'ramda/src/merge'
+import merge from '/util/merge'
 
 export const SET_URL = 'SET_URL'
 

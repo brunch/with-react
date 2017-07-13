@@ -1,38 +1,15 @@
-import assoc from 'ramda/src/assoc'
+import assoc from '/util/assoc'
+import {compose, withState, setNodeName} from '/util/compose'
+import Button from '/components/elements/button'
 
-import Title from '/components/elements/title'
-
-import {buttonStyle} from '/components/elements/button'
 import {formStyle, labelStyle, fieldStyle} from './styles'
 
-const {Component, cloneElement} = Preact
+const {cloneElement} = Preact
 
-export class Form extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: props.data || {}
-    }
-  }
-
-  set (key, val) {
-    this.setState({
-      data: assoc(key, val, this.state.data)
-    })
-  }
-
-  render ({onSubmit, children, updateProps, data, ...props}) {
-    const childrenWithProps = updateProps(children)
-    return <form
-      onSubmit={(ev) => ev.preventDefault() || onSubmit(data)}
-      {...props}
-      {...formStyle}
-    >
-      {childrenWithProps}
-    </form>
-  }
-
-  updateProps (children) {
+export const Form = compose(
+  setNodeName('Form'),
+  withState('data', 'setData', ({data}) => data || {}),
+  function updateProps (children) {
     const names = ['TextField', 'TextArea']
     for (var x = 0; x < children.length; x++) {
       if (children[x].nodeName && names.indexOf(children[x].nodeName.name) > -1) {
@@ -46,13 +23,28 @@ export class Form extends Component {
       }
     }
     return children
+  },
+  function set (key, val) {
+    this.setState({
+      data: assoc(key, val, this.state.data)
+    })
+  },
+  function render ({onSubmit, children, updateProps, data, ...props}) {
+    const childrenWithProps = updateProps(children)
+    return <form
+      onSubmit={(ev) => ev.preventDefault() || onSubmit(data)}
+      {...props}
+      {...formStyle}
+    >
+      {childrenWithProps}
+    </form>
   }
-}
+)
 
 export const Field = ({label, name, children, ...props}) =>
   <div>
     <label htmlFor={name} {...labelStyle}>
-      <Title style='smallTitle'>{label}</Title>
+      <h4>{label}</h4>
     </label>
     {children}
   </div>
@@ -91,4 +83,4 @@ export const TextArea = ({label, name, placeholder, set, data, ...props}) =>
   </Field>
 
 export const SubmitButton = ({children, ...props}) =>
-  <button type='submit' {...props} {...buttonStyle()}>{children}</button>
+  <Button type='submit' {...props}>{children}</Button>
