@@ -1,0 +1,53 @@
+@import (reference) 'variables.less';
+
+.page-container {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.page {
+  display: block;
+  box-sizing: border-box;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1em 2em 2em 2em;
+
+  &.no-padding {
+    padding: 0;
+  }
+
+  &.forward {
+    animation: slide-in .5s;
+  }
+
+  &.back {
+    animation: slide-in-from-left .5s;
+  }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(10%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-from-left {
+  0% { transform: translateX(-10%); opacity: 0; }
+  100% { transform: translateX(0%); opacity: 1; }
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding-top: 1em;
+
+  h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+  }
+}

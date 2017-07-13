@@ -5,6 +5,11 @@ exports.files = {
       'vendor.js': /^(?!app)/,
       'app.js': /^app/
     }
+  },
+  stylesheets: {
+    joinTo: {
+      'app.css': /^app/
+    }
   }
 }
 

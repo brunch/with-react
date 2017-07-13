@@ -1,22 +1,15 @@
 import Router from 'preact-router'
 
 import {getState, subscribe} from '/store'
-
+import compose from '/util/compose'
 import Home from '/components/pages/home'
 
-let {render, Component} = Preact
-
-class Main extends Component {
-  constructor () {
-    super()
-    this.state = getState()
-  }
-
-  componentDidMount () {
+const Main = compose(
+  {state: getState()},
+  function componentDidMount () {
     subscribe(() => this.setState(getState()))
-  }
-
-  render (_, {humans, modals, ...props}) {
+  },
+  function render (_, props) {
     console.log('Main', props)
     return (
       <Router>
@@ -24,6 +17,6 @@ class Main extends Component {
       </Router>
     )
   }
-}
+)
 
-render(<Main />, document.body)
+Preact.render(<Main />, document.body)

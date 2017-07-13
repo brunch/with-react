@@ -1,0 +1,17 @@
+@import (reference) 'variables.less';
+
+.layout-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-stack {
+  & > * {
+    margin-top: @gutter / 2;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
