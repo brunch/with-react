@@ -16,7 +16,6 @@
     "atom": "1.1.0",
     "check-arg-types": "1.1.0",
     "classless-component": "0.1.0",
-    "glamor": "^3.0.0-3",
     "preact": "8.2.1",
     "preact-portal": "1.1.2",
     "preact-router": "2.5.4"
