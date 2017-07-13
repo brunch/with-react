@@ -7,7 +7,10 @@ import {
   FieldSet,
   TextField
 } from '/components/elements/form'
+import {Row, Column} from '/components/elements/grid'
 import Link from '/components/elements/link'
+
+import range from '/util/range'
 
 const Home = ({url}) =>
   <div style='max-width: 640px; margin: 1rem auto;'>
@@ -17,7 +20,7 @@ const Home = ({url}) =>
       <Link to='http://google.ca'>Google</Link>
       <Button to='http://news.ycombinator.com'>Hacker News</Button>
     </Card>
-    <div>
+    <div class='spaced'>
       <h2>Dropdown</h2>
       <Dropdown>
         <ul>
@@ -28,7 +31,7 @@ const Home = ({url}) =>
         </ul>
       </Dropdown>
     </div>
-    <Card>
+    <Card className='spaced'>
       <Form>
         <FormHeading>
           <h2>Sign In</h2>
@@ -53,6 +56,17 @@ const Home = ({url}) =>
         </FieldSet>
       </Form>
     </Card>
+    <Row><h2>Grid</h2></Row>
+    <Row>{range(1, 4).map((n) =>
+      <Column>
+        <Card>{n}</Card>
+      </Column>
+    )}</Row>
+    <Row>{range(4, 6).map((n) =>
+      <Column>
+        <Card>{n}</Card>
+      </Column>
+    )}</Row>
   </div>
 
 export default Home
