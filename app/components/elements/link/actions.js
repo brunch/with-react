@@ -10,6 +10,7 @@ export const click = (url) =>
 
 export function setUrl (url) {
   check(arguments, ['string'])
+  window.history.pushState('', '', url)
   return setAction({url})
 }
 
