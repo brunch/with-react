@@ -1,5 +1,4 @@
 import assoc from '/util/assoc'
-import without from '/util/without'
 
 import {OPEN_MODAL, CLOSE_MODAL} from './actions'
 
@@ -11,7 +10,8 @@ const modalReducer = ({type, payload}, state) => {
       return assoc('modals', {...state.modals, [uid]: true}, state)
 
     case CLOSE_MODAL:
-      return assoc('modals', without([uid], state.modals || {}), state)
+      delete state['modals'][uid]
+      return state
 
     default:
       return state
