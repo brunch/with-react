@@ -1,12 +1,16 @@
-export const Arrow = ({className = ''}) =>
+export const DownArrow = () =>
   <div class='arrow-container'>
-    <span class={'arrow ' + className} />
+    <span class='arrow arrow-down' />
   </div>
 
-export const DownArrow = ({className = ''}) =>
-  <Arrow className={'arrow-down ' + className} />
+export const LeftArrow = () =>
+  <div class='arrow-container'>
+    <span class='arrow arrow-left' />
+  </div>
 
-export const LeftArrow = ({className = ''}) =>
-  <Arrow className={'arrow-left ' + className} />
+export const Arrow = () =>
+  <div class='arrow-container'>
+    <span class='arrow' />
+  </div>
 
 export default Arrow
