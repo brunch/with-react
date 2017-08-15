@@ -9,6 +9,12 @@ exports.files = {
   stylesheets: {
     joinTo: {
       'app.css': /^app/
+    },
+    order: {
+      before: [
+        'app/stylesheets/reset.less',
+        'app/stylesheets/base.less'
+      ]
     }
   }
 }
