@@ -1,6 +1,8 @@
 import {compose, setNodeName} from '/util/compose'
 import guid from '/util/guid'
 import pathOr from '/util/pathOr'
+import pipe from '/util/pipe'
+import filter from '/util/filter'
 
 import {DownArrow} from '/components/elements/arrow'
 import Button from '/components/elements/button'
@@ -16,13 +18,21 @@ const isDropdown = (el) =>
   (el.classList && el.classList.contains('btn-dropdown'))
 
 document.body.addEventListener('click', (ev) => {
+  const dds = pipe(
+    pathOr({}, ['_dropdowns']),
+    filter((val) => val),
+    Object.keys
+  )(getState())
+  if (!dds.length) {
+    return
+  }
   let el = ev.target
   if (isDropdown(el)) return
   while (el.parentNode) {
     el = el.parentNode
     if (isDropdown(el)) return
   }
-  dispatch(closeAllDropdowns(null))
+  dispatch(closeAllDropdowns())
 })
 
 const Dropdown = compose(
@@ -54,7 +64,14 @@ const Dropdown = compose(
     ev.preventDefault()
     dispatch(toggleDropdown(this._uid))
   },
-  function render ({open, handleClick, Trigger, buttonText = 'Select', children}) {
+  function render ({
+    open,
+    handleClick,
+    Trigger,
+    buttonText = 'Select',
+    noWrapper = false,
+    children
+  }) {
     const cls = open
       ? 'dropdown-menu open'
       : open === false
@@ -65,13 +82,13 @@ const Dropdown = compose(
         ? <Button className='btn-medium blue-hover btn-dropdown btn-noupper btn-glow' to={handleClick}>
           <Level noPadding>{buttonText} <DownArrow /></Level>
         </Button>
-        : <div class='btn-dropdown' onclick={handleClick}>
-          <Trigger />
+        : <Trigger className='btn-dropdown' onClick={handleClick} />}
+      {noWrapper
+        ? open && children
+        : <div className={cls}>
+          <div class='dropdown-arrow' />
+          {children}
         </div>}
-      <div className={cls}>
-        <div class='dropdown-arrow' />
-        {children}
-      </div>
     </div>
   }
 )

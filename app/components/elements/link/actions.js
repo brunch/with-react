@@ -1,5 +1,5 @@
 import check from 'check-arg-types'
-import createAction from '/util/create-action'
+import createAction from '/util/createAction'
 import {dispatch} from '/store'
 
 export const SET_URL = 'SET_URL'
