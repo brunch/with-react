@@ -1,19 +1,24 @@
-import assoc from '/util/assoc'
-import {compose, withState, setNodeName} from '/util/compose'
+import {debounce as debounceFunction} from 'throttle-debounce'
+
+import {compose, setNodeName} from '/util/compose'
 import Button from '/components/elements/button'
+
+import {dispatch} from '/store'
+
+import {updateFormData} from './actions'
 
 const {cloneElement} = Preact
 
 export const Form = compose(
   setNodeName('Form'),
-  withState('data', 'setData', ({data}) => data || {}),
   function updateProps (children) {
-    const names = ['TextField', 'TextArea']
+    const names = ['TextField', 'TextArea', 'RadioField']
     for (var x = 0; x < children.length; x++) {
       if (children[x].nodeName && names.indexOf(children[x].nodeName.name) > -1) {
+        const name = children[x].attributes.name
         children[x] = cloneElement(children[x], {
-          set: this.set.bind(this),
-          data: this.state.data
+          formName: this.props.name,
+          value: (this.props.data || {})[name]
         })
       }
       if (children[x].children && children[x].children.length) {
@@ -21,11 +26,6 @@ export const Form = compose(
       }
     }
     return children
-  },
-  function set (key, val) {
-    this.setState({
-      data: assoc(key, val, this.state.data)
-    })
   },
   function render ({onSubmit, children, updateProps, data, ...props}) {
     const childrenWithProps = updateProps(children)
@@ -41,44 +41,62 @@ export const Form = compose(
 export const FormHeading = ({children}) =>
   <div class='form-heading'>{children}</div>
 
+export const FormGroup = ({children}) =>
+  <div className='form-group'>{children}</div>
+
+export const FormRow = ({children}) =>
+  <div className='form-row'>{children}</div>
+
 export const FieldSet = ({className, children}) =>
   <fieldset class={className || ''}>{children}</fieldset>
 
-export const Field = ({label, name, children, ...props}) =>
-  <div>
-    <label htmlFor={name}>
-      <h4>{label}</h4>
-    </label>
+export const Field = ({label, name, className = '', children, ...props}) =>
+  <div className={className}>
+    <label htmlFor={name} className='bold-label'>{label}</label>
     {children}
   </div>
 
-/**
- * Text input field
- * @param  {string}       props.label       string passed to label
- * @param  {string}       props.name        unique name for field, where value is stored on `data[name]`
- * @param  {string}       props.placeholder html placeholder attr
- * @param  {function}     props.set         update parent Form `state.data`
- * @param  {object}       props.data        object holding form data
- * @return {vnode}
- */
-export const TextField = ({label, name, placeholder, set, data, ...props}) =>
-  <Field label={label} name={name} {...props}>
-    <input
-      type='text'
-      name={name}
-      placeholder={placeholder}
-      value={data[name]}
-      onChange={(ev) => set(name, ev.target.value)}
-    />
-  </Field>
+export const TextField = ({
+  type = 'text',
+  name,
+  placeholder,
+  debounce = 0,
+  // Assigned by updateProps
+  formName,
+  value,
+  ...props
+}) =>
+  <input
+    type={type}
+    name={name}
+    placeholder={placeholder}
+    value={value}
+    onInput={debounceFunction(debounce, (ev) =>
+      ev.preventDefault() ||
+      dispatch(updateFormData(formName, {[name]: ev.target.value}))
+    )}
+    {...props}
+  />
 
-export const TextArea = ({label, name, placeholder, set, data, ...props}) =>
+export const RadioField = ({name, value, checked, formName, ...props}) =>
+  <input
+    type='radio'
+    name={name}
+    checked={checked}
+    onChange={(ev) =>
+      ev.preventDefault() ||
+      dispatch(updateFormData(formName, {[name]: value}))
+    }
+    {...props}
+  />
+
+export const TextArea = ({label, name, placeholder, set, value, ...props}) =>
   <Field label={label} name={name} {...props}>
     <textarea
       name={name}
       cols={30}
       rows={10}
-      value={data[name]}
+      value={value}
       onChange={(ev) => set(name, ev.target.value)}
     />
   </Field>

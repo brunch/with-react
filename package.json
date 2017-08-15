@@ -18,7 +18,8 @@
     "classless-component": "0.1.0",
     "preact": "8.2.1",
     "preact-portal": "1.1.2",
-    "preact-router": "2.5.4"
+    "preact-router": "2.5.4",
+    "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
