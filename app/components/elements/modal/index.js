@@ -1,10 +1,10 @@
 import Portal from 'preact-portal'
 import {some, diffObj} from 'wasmuth'
 
-import {dispatch, subscribe} from '/store'
+import {dispatch, watchPath} from '/store'
 import {closeModal} from './actions'
 
-subscribe(['modals'], (modals, oldModals = {}) => {
+watchPath(['modals'], (modals, oldModals = {}) => {
   const hasOpenModal = some((x) => x, modals)
   if (hasOpenModal) {
     const diff = Object.keys(diffObj(oldModals, modals))

@@ -7,10 +7,10 @@ import {
   pipe,
   pathOr,
   toPairs,
-  fromPairs
+  fromPairs,
+  request
 } from 'wasmuth'
 
-import request from '/util/request'
 import {compose, setNodeName} from '/util/compose'
 
 import {set, dispatch, getState} from '/store'

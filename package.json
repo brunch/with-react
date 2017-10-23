@@ -13,14 +13,16 @@
     "std": "standard --verbose | snazzy"
   },
   "dependencies": {
-    "atom": "1.3.0",
+    "atom": "1.1.0",
+    "atom-lens-reducer": "^0.2.0",
     "check-arg-types": "1.1.0",
     "classless-component": "0.1.0",
     "preact": "8.2.5",
     "preact-portal": "1.1.2",
     "preact-router": "2.5.7",
+    "query-string": "^5.0.0",
     "throttle-debounce": "^1.0.1",
-    "wasmuth": "^1.1.0"
+    "wasmuth": "^1.2.2"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",

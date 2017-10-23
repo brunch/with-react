@@ -1,6 +1,5 @@
 import check from 'check-arg-types'
-
-import createAction from '/util/createAction'
+import {createAction} from 'wasmuth'
 
 export const TOGGLE_DROPDOWN = 'TOGGLE_DROPDOWN'
 const toggleDropdownAction = createAction(TOGGLE_DROPDOWN)

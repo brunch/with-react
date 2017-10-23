@@ -1,6 +1,5 @@
 import check from 'check-arg-types'
-
-import createAction from '/util/createAction'
+import {createAction} from 'wasmuth'
 
 export const SET_FORM_DATA = 'SET_FORM_DATA'
 export const UPDATE_FORM_DATA = 'UPDATE_FORM_DATA'
