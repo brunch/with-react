@@ -1,8 +1,6 @@
+import {pathOr, pipe, filter, guid} from 'wasmuth'
+
 import {compose, setNodeName} from '/util/compose'
-import guid from '/util/guid'
-import pathOr from '/util/pathOr'
-import pipe from '/util/pipe'
-import filter from '/util/filter'
 
 import {DownArrow} from '/components/elements/arrow'
 import Button from '/components/elements/button'
@@ -79,7 +77,7 @@ const Dropdown = compose(
         : 'dropdown-menu'
     return <div>
       {Trigger === undefined
-        ? <Button className='btn-medium blue-hover btn-dropdown btn-noupper btn-glow' to={handleClick}>
+        ? <Button className='btn-dropdown black-ghost-btn' to={handleClick}>
           <Level noPadding>{buttonText} <DownArrow /></Level>
         </Button>
         : <Trigger className='btn-dropdown' onClick={handleClick} />}

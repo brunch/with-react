@@ -1,4 +1,5 @@
 import check from 'check-arg-types'
+
 import createAction from '/util/createAction'
 
 export const TOGGLE_DROPDOWN = 'TOGGLE_DROPDOWN'

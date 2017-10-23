@@ -5,8 +5,8 @@ const Button = ({to, className = '', children}) =>
     {children}
   </Link>
 
-const FormButtom = ({className = '', type, children}) =>
-  <button type={type} class={'btn ' + className}>{children}</button>
+const FormButtom = ({className = '', type, children, ...props}) =>
+  <button type={type} class={'btn ' + className} {...props}>{children}</button>
 
 export default function ButtonHoC ({to, type, children, ...props}) {
   return !type

@@ -1,12 +1,11 @@
-import pathOr from '/util/pathOr'
-import pathSet from '/util/pathSet'
-import merge from '/util/merge'
+import {pathOr, pathSet, merge} from 'wasmuth'
 
 import {
   SET_FORM_DATA,
   UPDATE_FORM_DATA,
   CLEAR_FORM_DATA,
-  SET_FORM_RESULT
+  SET_FORM_RESULT,
+  SET_FORM_ERROR
 } from './actions'
 
 export default function formReducer ({type, payload}, state) {
@@ -25,6 +24,10 @@ export default function formReducer ({type, payload}, state) {
 
     case SET_FORM_RESULT:
       return pathSet(['formResults', formName], result, state)
+
+    case SET_FORM_ERROR:
+      const {fieldName, err} = payload
+      return pathSet(['formErrors', formName, fieldName], err, state)
 
     default:
       return state

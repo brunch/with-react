@@ -1,7 +1,8 @@
 const classMap = {
   noPadding: 'no-padding',
   halfPadding: 'half-padding',
-  notSpaced: 'not-spaced'
+  notSpaced: 'not-spaced',
+  withUnderline: 'with-underline'
 }
 
 const cls = (obj) =>
@@ -20,13 +21,14 @@ const Level = ({
   noPadding,
   halfPadding,
   notSpaced,
+  withUnderline,
   // ...rest
   children,
   ...props
 }) =>
   <div>
     {children.length > 0 &&
-      <div class={cls({noPadding, halfPadding, notSpaced})}>
+      <div class={cls({noPadding, halfPadding, notSpaced, withUnderline})}>
         {children}
       </div>}
 

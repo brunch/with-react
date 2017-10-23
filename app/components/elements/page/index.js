@@ -1,6 +1,6 @@
-export const Page = ({back, className, children}) =>
-  <div class='page-container'>
-    <div class={`page ${className || ''}${back ? ' back' : ' forward'}`}>
+export const Page = ({back, children}) =>
+  <div className='page-container'>
+    <div class={`page ${back ? ' back' : ' forward'}`}>
       {children}
     </div>
   </div>
