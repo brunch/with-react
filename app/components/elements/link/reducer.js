@@ -1,4 +1,4 @@
-import merge from '/util/merge'
+import {merge} from 'wasmuth'
 
 export const SET_URL = 'SET_URL'
 

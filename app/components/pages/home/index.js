@@ -1,3 +1,5 @@
+import {pipe, range} from 'wasmuth'
+
 // Components
 import Card from '/components/elements/card'
 import Button from '/components/elements/button'
@@ -17,10 +19,6 @@ import PageTitle from '/components/elements/page-title'
 // State
 import {dispatch} from '/store'
 import {openModal} from '/components/elements/modal/actions'
-
-// Util
-import pipe from '/util/pipe'
-import range from '/util/range'
 
 const OpenModal = pipe(
   ({modals}) => ({

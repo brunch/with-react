@@ -1,12 +1,25 @@
 import Portal from 'preact-portal'
-import {dispatch} from '/store'
+import {some, diffObj} from 'wasmuth'
+
+import {dispatch, watchPath} from '/store'
 import {closeModal} from './actions'
+
+watchPath(['modals'], (modals, oldModals = {}) => {
+  const hasOpenModal = some((x) => x, modals)
+  if (hasOpenModal) {
+    const diff = Object.keys(diffObj(oldModals, modals))
+    if (diff.length) {
+      document.body.classList.add('modal-open')
+    }
+  } else {
+    document.body.classList.remove('modal-open')
+  }
+})
 
 const Modal = ({
   uid = 'Modal',
   open,
   className = '',
-  overlayClose = true,
   children
 }) =>
   open
@@ -14,9 +27,9 @@ const Modal = ({
       <Portal into='body'>
         <div
           class={'modal-overlay ' + className}
-          onclick={() => overlayClose && dispatch(closeModal(uid))}
         >
           <div class='modal'>
+            <div className='close' onClick={() => dispatch(closeModal(uid))} />
             {children}
           </div>
         </div>

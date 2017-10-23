@@ -1,6 +1,5 @@
 import check from 'check-arg-types'
-
-import createAction from '/util/createAction'
+import {createAction} from 'wasmuth'
 
 export const SET_FORM_DATA = 'SET_FORM_DATA'
 export const UPDATE_FORM_DATA = 'UPDATE_FORM_DATA'
@@ -39,4 +38,16 @@ export function setFormResult (formName, result) {
   }
   check(arguments, ['string', '-any'])
   return setFormResultAction({formName, result})
+}
+
+export const SET_FORM_ERROR = 'SET_FORM_ERROR'
+
+const setFormErrorAction = createAction(SET_FORM_ERROR)
+export function setFormError (formName, fieldName, err) {
+  if (arguments.length < 3) {
+    const args = [setFormError].concat(Array.prototype.slice.call(arguments))
+    return setFormError.bind.apply(setFormError, args)
+  }
+  check(arguments, ['string', 'string', ['string', 'boolean']])
+  return setFormErrorAction({formName, fieldName, err})
 }
