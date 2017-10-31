@@ -36,7 +36,7 @@ exports.plugins = {
         'identifier': 'Preact',
         'moduleName': 'preact'
       }],
-      ['transform-react-jsx', {'pragma': 'Preact.h'}]
+      ['transform-react-jsx', {'pragma': 'Preact.h'}],
     ]
   }
 }
