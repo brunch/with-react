@@ -2,7 +2,7 @@ import {assoc, path, pathSet} from 'wasmuth'
 
 import {TOGGLE_DROPDOWN, CLOSE_ALL_DROPDOWNS} from './actions'
 
-const dropdownReducer = ({type, payload}, state) => {
+const dropdownReducer = (state, {type, payload}) => {
   switch (type) {
     case TOGGLE_DROPDOWN:
       const newVal = !path(['_dropdowns', payload.uid], state)

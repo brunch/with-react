@@ -14,16 +14,17 @@
   },
   "dependencies": {
     "atom": "1.1.0",
-    "atom-lens-reducer": "^0.2.0",
+    "atom-lens-reducer": "0.2.0",
     "check-arg-types": "1.1.0",
     "classless-component": "0.1.0",
     "preact": "8.2.5",
     "preact-portal": "1.1.2",
     "preact-router": "2.5.7",
-    "query-string": "^5.0.0",
-    "ramda": "^0.25.0",
-    "throttle-debounce": "^1.0.1",
-    "wasmuth": "^1.2.2"
+    "query-string": "5.0.0",
+    "redux": "3.7.2",
+    "ramda": "0.25.0",
+    "throttle-debounce": "1.0.1",
+    "wasmuth": "1.2.2"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
@@ -36,13 +37,14 @@
     "babel-preset-react": "~6.24",
     "brunch": "^2",
     "less-brunch": "^2.10.0",
+    "redux-devtools-extension": "2.13.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
     "uglify-js-brunch": "^2"
   },
   "engines": {
     "npm": ">=3.0.0",
-    "node": ">=6.0.0 <=8.1"
+    "node": ">=6.0.0"
   },
   "standard": {
     "globals": [

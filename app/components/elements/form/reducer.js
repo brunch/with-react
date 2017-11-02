@@ -8,7 +8,8 @@ import {
   SET_FORM_ERROR
 } from './actions'
 
-export default function formReducer ({type, payload}, state) {
+export default function formReducer (state, {type, payload}) {
+  if (typeof payload !== 'object') return state
   const {formName, data, result} = payload
   switch (type) {
     case SET_FORM_DATA:

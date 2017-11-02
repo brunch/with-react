@@ -2,7 +2,7 @@ import {assoc} from 'wasmuth'
 
 import {OPEN_MODAL, CLOSE_MODAL} from './actions'
 
-const modalReducer = ({type, payload, meta}, state) => {
+const modalReducer = (state, {type, payload, meta}) => {
   const uid = payload
 
   switch (type) {
