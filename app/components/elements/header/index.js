@@ -1,3 +1,5 @@
 import BaseHeader from './base'
 
-export default () => BaseHeader({})
+export default () =>
+  console.log('BaseHeader') ||
+  BaseHeader({})

@@ -1,7 +1,10 @@
-import {equals} from 'ramda'
+import queryString from 'query-string'
+import {map, reduce, equal} from 'wasmuth'
+
 import PreactRouter from 'preact-router'
-import {map, reduce} from 'wasmuth'
+
 import {compose, setNodeName} from '/util/compose'
+
 import {set, dispatch, getState} from '/store'
 import {routes} from '/routes'
 
@@ -50,7 +53,7 @@ export const Route = compose(
       url: window.location.pathname,
       name: this.props.name
     }
-    if (!equals(currentValues, newValues)) {
+    if (!equal(currentValues, newValues)) {
       dispatch(set('route', newValues))
     }
   },
@@ -82,25 +85,6 @@ export const urlFor = (name, {args = {}, queries = {}} = {}) => {
     rule.path,
     Object.keys(args)
   )
-  return `${replaced}${queryString(queries)}`
-}
-
-/**
- * Turn object of queries into querystring.
- *
- * ```
- * queryString({search: 'hi', user: 3})
- * > '?search=hi&user=3'
- * ```
- */
-const queryString = queries => {
-  if (Object.keys(queries).length > 0) {
-    const encoded = map(
-      (key, value) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
-      queries
-    )
-    return `?${Object.values(encoded).join('&')}`
-  }
-  return ''
+  const hasQueries = Object.keys(queries).length > 0
+  return `${replaced}${!hasQueries ? '' : '?' + queryString.stringify(queries)}`
 }

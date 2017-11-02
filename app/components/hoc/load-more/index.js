@@ -14,8 +14,7 @@ import {
 import {compose, setNodeName} from '/util/compose'
 
 import {set, dispatch, getState} from '/store'
-
-import {API_URL} from '/consts'
+import {API_URL} from '/settings'
 
 const toType = check.prototype.toType
 

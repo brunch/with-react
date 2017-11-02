@@ -13,13 +13,11 @@ import linkReducer from '/components/elements/link/reducer'
 import modalReducer from '/components/elements/modal/reducer'
 import formReducer from '/components/elements/form/reducer'
 
-const combine = reducers => (state, action) => {
-  var newState = state || {}
-  for (var i = 0; i < reducers.length; i++) {
-    newState = reducers[i](newState, action)
-  }
-  return newState
-}
+const combine = (reducers) => (state, action) =>
+  reducers.reduce(
+    (newState, reducer) => reducer(newState, action),
+    state
+  )
 
 const initialState = {
   url: window.location.pathname,
@@ -34,7 +32,11 @@ const reducers = [
   (state, action) => lensReducer(action, state)
 ]
 
-export const store = createStore(combine(reducers), initialState, composeWithDevTools())
+export const store = createStore(
+  combine(reducers),
+  initialState,
+  composeWithDevTools()
+)
 export const dispatch = store.dispatch
 export const getState = store.getState
 export const subscribe = store.subscribe
