@@ -33,7 +33,7 @@ const OpenModal = pipe(
     </div>
 )
 
-const Home = ({url, modals}) =>
+const Home = ({url, modals = {}}) =>
   <Page>
     <PageTitle title='With Preact'>
       <OpenModal modals={modals} />

@@ -1,6 +1,11 @@
 import atom from 'atom'
 import {watchStore} from 'wasmuth'
-import {set as lensSet, update as lensUpdate, remove as lensRemove} from 'atom-lens-reducer'
+import {
+  set as lensSet,
+  update as lensUpdate,
+  remove as lensRemove,
+  reducer as lensReducer
+} from 'atom-lens-reducer'
 
 import dropdownReducer from '/components/elements/dropdown/reducer'
 import linkReducer from '/components/elements/link/reducer'
@@ -16,7 +21,8 @@ export const store = atom([
   linkReducer,
   dropdownReducer,
   modalReducer,
-  formReducer
+  formReducer,
+  lensReducer
 ], initialState)
 export const dispatch = store.dispatch
 export const getState = store.getState
