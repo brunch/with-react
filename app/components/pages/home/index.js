@@ -28,7 +28,6 @@ const OpenModal = pipe(
   }),
   ({handleClick, modals}) =>
     <div>
-      <Modal uid='OpenModal' open={!!modals['OpenModal']}>Hi there!</Modal>
       <Button to={handleClick}>Win!</Button>
     </div>
 )

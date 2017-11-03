@@ -9,7 +9,7 @@ export default () =>
     <a
       href={urlFor(
         'resource',
-        {args: {id: 123}, queries: {search: 'abcd', options: [1, 2, 'a', 'b']}}
+        {args: {id: 123}, queries: {search: 'abcd', options: '1, 2, a, b'}}
       )}
     >
       Resource

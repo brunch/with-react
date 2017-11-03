@@ -5,25 +5,20 @@ import {dispatch, watchPath} from '/store'
 import {closeModal} from './actions'
 
 const Modal = ({
-  open,
   className = '',
   children
 }) =>
-  open
-    ? (
-      <Portal into='body'>
-        <div
-          class={'modal-container ' + className}
-        >
-          <div class='modal-content'>
-            <div className='close' onClick={() => dispatch(closeModal)} >
-              close
-            </div>
-            {children}
-          </div>
+  <Portal into='body'>
+    <div
+      class={'modal-container ' + className}
+    >
+      <div class='modal-content'>
+        <div className='close' onClick={() => dispatch(closeModal)} >
+          close
         </div>
-      </Portal>
-    )
-    : null
+        {children}
+      </div>
+    </div>
+  </Portal>
 
 export default Modal
