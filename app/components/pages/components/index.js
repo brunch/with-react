@@ -1,4 +1,9 @@
-export const Components = () =>
-  <h1>Components</h1>
+import {dispatch} from '/store'
+import {openModal} from '/components/elements/modal/actions'
+import BaseComponents from './base'
 
-export default Components
+export default () => {
+  return BaseComponents({
+    openExampleModal: () => dispatch(openModal('Example'))
+  })
+}

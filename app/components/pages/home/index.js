@@ -12,7 +12,6 @@ import {
 } from '/components/elements/form'
 import {Row, Column} from '/components/elements/grid'
 import Link from '/components/elements/link'
-import Modal from '/components/elements/modal'
 import Page from '/components/elements/page'
 import PageTitle from '/components/elements/page-title'
 
@@ -24,11 +23,10 @@ const OpenModal = pipe(
   ({modals}) => ({
     modals,
     handleClick: (ev) =>
-      ev.preventDefault() || dispatch(openModal('OpenModal'))
+      ev.preventDefault() || dispatch(openModal({'Example': {name: 'example'}}))
   }),
   ({handleClick, modals}) =>
     <div>
-      <Modal uid='OpenModal' open={!!modals['OpenModal']}>Hi there!</Modal>
       <Button to={handleClick}>Win!</Button>
     </div>
 )

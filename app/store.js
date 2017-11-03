@@ -8,6 +8,7 @@ import {
 } from 'atom-lens-reducer'
 import {composeWithDevTools} from 'redux-devtools-extension'
 
+import mapStateToPropsUtil from '/util/mapStateToProps'
 import dropdownReducer from '/components/elements/dropdown/reducer'
 import linkReducer from '/components/elements/link/reducer'
 import modalReducer from '/components/elements/modal/reducer'
@@ -20,8 +21,7 @@ const combine = (reducers) => (state, action) =>
   )
 
 const initialState = {
-  url: window.location.pathname,
-  modals: {}
+  url: window.location.pathname
 }
 
 const reducers = [
@@ -44,4 +44,5 @@ export const set = lensSet
 export const update = lensUpdate
 export const remove = lensRemove
 export const watchPath = watchStore(store)
+export const mapStateToProps = mapStateToPropsUtil
 export default store

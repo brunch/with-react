@@ -1,40 +1,43 @@
 import Portal from 'preact-portal'
-import {some, diffObj} from 'wasmuth'
 
-import {dispatch, watchPath} from '/store'
+import {dispatch, watchPath, getState} from '/store'
 import {closeModal} from './actions'
 
-watchPath(['modals'], (modals, oldModals = {}) => {
-  const hasOpenModal = some((x) => x, modals)
-  if (hasOpenModal) {
-    const diff = Object.keys(diffObj(oldModals, modals))
-    if (diff.length) {
-      document.body.classList.add('modal-open')
-    }
+// Watch for an open modal, if so add a class to body to prevent
+// scrolling behind the modal.
+watchPath(['modal'], (modal, oldmodal) => {
+  if (modal && modal !== oldmodal) {
+    document.body.classList.add('modal-open')
   } else {
     document.body.classList.remove('modal-open')
   }
 })
 
+const isOverlay = (el) =>
+  (el.classList && el.classList.contains('modal-container'))
+
+document.body.addEventListener('click', (ev) => {
+  const modal = getState().modal
+  if (modal && isOverlay(ev.target)) {
+    dispatch(closeModal)
+  }
+})
+
 const Modal = ({
-  uid = 'Modal',
-  open,
   className = '',
   children
 }) =>
-  open
-    ? (
-      <Portal into='body'>
-        <div
-          class={'modal-overlay ' + className}
-        >
-          <div class='modal'>
-            <div className='close' onClick={() => dispatch(closeModal(uid))} />
-            {children}
-          </div>
+  <Portal into='body'>
+    <div
+      class={'modal-container ' + className}
+    >
+      <div class='modal-content'>
+        <div className='close' onClick={() => dispatch(closeModal)} >
+          close
         </div>
-      </Portal>
-    )
-    : null
+        {children}
+      </div>
+    </div>
+  </Portal>
 
 export default Modal

@@ -1,17 +1,12 @@
-import {assoc} from 'wasmuth'
-
 import {OPEN_MODAL, CLOSE_MODAL} from './actions'
 
-const modalReducer = (state, {type, payload, meta}) => {
-  const uid = payload
-
+const modalReducer = (state, {type, payload}) => {
   switch (type) {
     case OPEN_MODAL:
-      return assoc('modals', {...state.modals, [uid]: meta || true}, state)
+      return {...state, modal: payload.name}
 
     case CLOSE_MODAL:
-      delete state['modals'][uid]
-      return state
+      return {...state, modal: undefined}
 
     default:
       return state
