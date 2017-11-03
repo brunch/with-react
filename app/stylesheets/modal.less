@@ -1,0 +1,43 @@
+@import (reference) 'variables.less';
+
+.modal-container {
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 30, 50, .3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  animation: fade-in .4s;
+
+	.modal-content {
+		text-align: center;
+		padding: @gutter;
+		max-width: 400px;
+		max-height: 100%;
+		overflow-y: auto;
+		margin: 0 auto;
+		background-color: @white;
+		border-radius: 7px;
+		position: relative;
+    animation: bounce .5s;
+
+		@media @tablet-desktop {
+			padding: @gutter*1.5;
+		}
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes bounce {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}

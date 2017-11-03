@@ -1,0 +1,60 @@
+@import (reference) 'variables.less';
+
+form {
+  margin-top: @gutter;
+
+  .or {
+    position: relative;
+    text-align: center;
+    line-height: 1.15rem;
+    font-size: 1.15rem;
+    color: @half-black;
+    margin: @gutter auto;
+    border-top: 1px solid @grey;
+    max-width: 60%;
+
+    span {
+      display: inline-block;
+      padding: 0 @gutter/2;
+      border: 10px solid @white;
+      margin-top: -50px;
+    }
+  }
+}
+
+fieldset {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  margin: 0;
+
+  &.padding-top {
+    padding-top: @gutter;
+  }
+
+  &.submit button {
+    width: 100%;
+  }
+}
+
+label {
+  display: block;
+  color: @half-black;
+  font-weight: 800;
+  margin-bottom: @gutter / 2; 
+}
+
+input,
+textarea {
+  width: 95.5%;
+  padding: 2%;
+  border: 1px solid @grey;
+  border-radius: @border-radius;
+  margin-bottom: @gutter / 2;
+}
+
+
+.form-heading {
+  text-align: center;
+  padding-bottom: @gutter;
+}

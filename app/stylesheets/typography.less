@@ -1,0 +1,57 @@
+@import (reference) 'variables.less';
+
+html {
+  font-size: @font-size;
+  font-family: @font-family;
+}
+
+body {
+  line-height: @line-height;
+  font-family: @font-family;
+  color: @black;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+
+  strong {
+    font-weight: 900;
+  }
+}
+
+a {
+  transition: @transition;
+  text-decoration: none;
+  color: @blue;
+
+  &:hover {
+    color: @teal;
+  }
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 0.85rem;
+}
+
+p {
+  font-weight: 400;
+  padding: @gutter/4 0 @gutter/4;
+}
