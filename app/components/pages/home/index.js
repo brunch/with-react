@@ -24,7 +24,7 @@ const OpenModal = pipe(
   ({modals}) => ({
     modals,
     handleClick: (ev) =>
-      ev.preventDefault() || dispatch(openModal('OpenModal'))
+      ev.preventDefault() || dispatch(openModal({'Example': {name: 'example'}}))
   }),
   ({handleClick, modals}) =>
     <div>

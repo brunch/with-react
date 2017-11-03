@@ -1,7 +1,7 @@
 @import (reference) 'variables.less';
 
-.modal-overlay {
-  display: flex;
+.modal-container {
+	display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(20, 30, 50, .3);
@@ -11,13 +11,24 @@
   right: 0;
   bottom: 0;
   z-index: 10;
-  animation: fade-in .4s
-}
+  animation: fade-in .4s;
 
-.modal {
-  max-width: 80%;
-  min-width: 400px;
-  animation: bounce .5s;
+	.modal-content {
+		text-align: center;
+		padding: @gutter;
+		max-width: 400px;
+		max-height: 100%;
+		overflow-y: auto;
+		margin: 0 auto;
+		background-color: @white;
+		border-radius: 7px;
+		position: relative;
+    animation: bounce .5s;
+
+		@media @tablet-desktop {
+			padding: @gutter*1.5;
+		}
+  }
 }
 
 @keyframes fade-in {
@@ -26,7 +37,7 @@
 }
 
 @keyframes bounce {
-  0% { transform: scale(0.1); opacity: 0; }
-  60% { transform: scale(1.2); opacity: 1; }
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
   100% { transform: scale(1); }
 }
