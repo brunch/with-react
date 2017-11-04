@@ -1,38 +1,12 @@
 import queryString from 'query-string'
-import {map, reduce, equal} from 'wasmuth'
+import {map, reduce, equal, pipe} from 'wasmuth'
 
 import PreactRouter from 'preact-router'
 
 import {compose, setNodeName} from '/util/compose'
 
 import {set, dispatch, getState} from '/store'
-import {routes} from '/routes'
-
-const {cloneElement} = Preact
-
-/**
- * Use instead of preact-router Router component.
- * All children should be Route components (defined below).
- * - Add key prop to Route children so that when route changes,
- *   the current route component will unmount and the new one will mount.
- * - Add path prop to Route children based on their name props.
- */
-export const Router = ({children, routes, ...props}) => {
-  for (var i = 0; i < children.length; i++) {
-    if (children[i].nodeName.name !== 'Route') {
-      throw new Error('The only children of Router should be Route components')
-    }
-  }
-
-  return (
-    <PreactRouter {...props}>
-      {map((route, i) => cloneElement(route, {
-        key: i,
-        path: routes[route.attributes.name].path
-      }), children)}
-    </PreactRouter>
-  )
-}
+import routes from '/routes'
 
 /**
  * Add preact-router props into the atom state
@@ -60,6 +34,21 @@ export const Route = compose(
   function render ({component: Component}) {
     return <Component />
   }
+)
+
+/**
+ * Use instead of preact-router Router component.
+ * - Add key prop to Route children so that when route changes,
+ *   the current route component will unmount and the new one will mount.
+ */
+export const Router = pipe(
+  ({routes}) => ({keys: Object.keys(routes), routes}),
+  ({keys, routes}) =>
+    <PreactRouter>
+      {map((name) =>
+        <Route name={name} key={`route-${name}`} {...routes[name]} />
+      , keys)}
+    </PreactRouter>
 )
 
 /**

@@ -22,7 +22,7 @@
     "query-string": "5.0.1",
     "redux": "3.7.2",
     "throttle-debounce": "1.0.1",
-    "wasmuth": "1.3.0"
+    "wasmuth": "1.4.0"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
