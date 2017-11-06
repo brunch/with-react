@@ -15,8 +15,8 @@ export default mapper => Component => compose({
   componentWillMount () {
     const syncState = () => {
       const newProps = mapper(getState())
-      if (!equal(newProps, this.state)) {
-        this.setState({...newProps})
+      if (!equal(newProps, this.state._namespacedState)) {
+        this.setState({_namespacedState: newProps})
       }
     }
     syncState()
@@ -25,7 +25,7 @@ export default mapper => Component => compose({
   componentWillUnmount () {
     this.unsubscribe()
   },
-  render (props) {
-    return <Component {...props} />
+  render ({unsubscribe, _namespacedState, ...props}) {
+    return <Component {...props} {..._namespacedState} />
   }
 })
