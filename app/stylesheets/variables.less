@@ -1,0 +1,34 @@
+// General
+@gutter: 30px;
+@border-radius: 2px;
+@transition: all 0.2s ease-in-out;
+@box-shadow: 0 0 20px rgba(0,0,0,0.15);
+
+// Typography
+@font-family: helvetica, sans-serif;
+@line-height: 1.5;
+@font-size: 16px;
+
+// Colors
+@blue: #5076FF;
+@teal: #00E6E1;
+@black: #09273E;
+@half-black: #9598A9;
+@light-grey: #FAFAFB;
+@grey: #D4D5D8;
+@white: #fff;
+
+// Responsive
+@desktop-max-width: 1200px;
+@desktop-min-width: 1025px;
+@tablet-max-width: 1024px;
+@tablet-min-width: 768px;
+@phone-max-width: 767px;
+@phone-min-width: 320px;
+@desktop: ~"screen and (min-width: @{desktop-min-width})";
+@tablet-desktop: ~"screen and (min-width: @{tablet-min-width})";
+@tablet: ~"screen and (min-width: @{tablet-min-width} and max-width: @{tablet-max-width})";
+@phone-tablet: ~"screen and (max-width: @{tablet-max-width})";
+@phone: ~"screen and (max-width: @{phone-max-width})";
+@phone-small: ~"screen and (max-width: @{phone-min-width})";
+@phone-to-desktop-max: ~"screen and (max-width: @{desktop-max-width})";

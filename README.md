@@ -1,10 +1,10 @@
-# Brunch + React + Babel/ES6
+# Brunch + Preact + Babel/ES6
 
-This is a modern JS skeleton with React for [Brunch](http://brunch.io).
+This is a modern JS skeleton with Peact for [Brunch](http://brunch.io).
 
 ## Installation
 
-Clone this repo manually or use `brunch new dir -s brunch/with-react`
+Clone this repo manually or use `brunch new dir -s staydecent/with-preact`
 
 ## Getting started
 
