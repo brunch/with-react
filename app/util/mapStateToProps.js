@@ -6,7 +6,7 @@ import compose from '/util/compose'
  * Mapper is called whenever the state changes.
  * Whenever the result of mapper changes, the component rerenders
  *
- * mapper: (state) => props this component needs from state
+ * mapper: (state, props) => props this component needs from state
  * Component: the component that needs the props
  *
  * @TODO: Eventually move this to wasmuth
@@ -14,7 +14,7 @@ import compose from '/util/compose'
 export default mapper => Component => compose({
   componentWillMount () {
     const syncState = () => {
-      const newProps = mapper(getState())
+      const newProps = mapper(getState(), this.props)
       if (!equal(newProps, this.state._namespacedState)) {
         this.setState({_namespacedState: newProps})
       }
