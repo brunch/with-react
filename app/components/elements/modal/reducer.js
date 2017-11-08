@@ -6,7 +6,7 @@ const modalReducer = (state, {type, payload}) => {
       return {...state, modal: payload.name}
 
     case CLOSE_MODAL:
-      return {...state, modal: undefined}
+      return {...state, modal: null}
 
     default:
       return state
