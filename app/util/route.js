@@ -32,8 +32,11 @@ export const Route = compose(
         dispatch(set('route', newValues))
       }
     },
-    render ({component: Component}) {
-      return <Component />
+    render ({component: Component, getComponent}) {
+      // pass getComponent if defined to support preact-async-route
+      return getComponent
+        ? <Component getComponent={getComponent} />
+        : <Component />
     }
   }
 )
