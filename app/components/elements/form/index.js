@@ -9,31 +9,34 @@ const {cloneElement} = Preact
 
 export const Form = compose(
   setNodeName('Form'),
-  function updateProps (children) {
-    const names = ['TextField', 'RadioField', 'Radio']
-    for (var x = 0; x < children.length; x++) {
-      if (children[x].nodeName && names.indexOf(children[x].nodeName.name) > -1) {
-        const name = children[x].attributes.name
-        children[x] = cloneElement(children[x], {
-          formName: this.props.name,
-          value: (this.props.data || {})[name],
-          error: (this.props.errors || {})[name]
-        })
+  {
+    updateProps (children) {
+      const names = ['TextField', 'RadioField', 'Radio']
+      for (var x = 0; x < children.length; x++) {
+        if (children[x].nodeName && names.indexOf(children[x].nodeName.name) > -1) {
+          const name = children[x].attributes.name
+          children[x] = cloneElement(children[x], {
+            formName: this.props.name,
+            value: (this.props.data || {})[name],
+            error: (this.props.errors || {})[name]
+          })
+        }
+        if (children[x].children && children[x].children.length) {
+          children[x].children = this.updateProps(children[x].children)
+        }
       }
-      if (children[x].children && children[x].children.length) {
-        children[x].children = this.updateProps(children[x].children)
-      }
+      return children
+    },
+
+    render ({onSubmit, children, updateProps, data, errors, ...props}) {
+      const childrenWithProps = updateProps(children)
+      return <form
+        onSubmit={(ev) => ev.preventDefault() || onSubmit({data, errors})}
+        {...props}
+      >
+        {childrenWithProps}
+      </form>
     }
-    return children
-  },
-  function render ({onSubmit, children, updateProps, data, errors, ...props}) {
-    const childrenWithProps = updateProps(children)
-    return <form
-      onSubmit={(ev) => ev.preventDefault() || onSubmit({data, errors})}
-      {...props}
-    >
-      {childrenWithProps}
-    </form>
   }
 )
 

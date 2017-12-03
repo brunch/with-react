@@ -35,59 +35,64 @@ document.body.addEventListener('click', (ev) => {
 
 const Dropdown = compose(
   setNodeName('Dropdown'),
-  function componentWillMount () {
-    this._uid = guid()
-  },
-  function componentDidMount () {
-    // Adjust position dynamically
-    // const offset = this.base.offsetWidth < 1000
-    //   ? this.base.offsetWidth / 2
-    //   : this.base.offsetWidth / 4
-    // const menuEl = this.base.querySelector('.dropdown-menu')
-    // menuEl.style = `margin-left: -${offset}px`
-    // Sync state
-    const syncState = () => {
-      const open = pathOr(false, ['_dropdowns', this._uid], getState())
-      if (open !== this.state.open) {
-        if (open === false && this.state.open === undefined) {
-          return
+  {
+    componentWillMount () {
+      this._uid = guid()
+    },
+
+    componentDidMount () {
+      // Adjust position dynamically
+      // const offset = this.base.offsetWidth < 1000
+      //   ? this.base.offsetWidth / 2
+      //   : this.base.offsetWidth / 4
+      // const menuEl = this.base.querySelector('.dropdown-menu')
+      // menuEl.style = `margin-left: -${offset}px`
+      // Sync state
+      const syncState = () => {
+        const open = pathOr(false, ['_dropdowns', this._uid], getState())
+        if (open !== this.state.open) {
+          if (open === false && this.state.open === undefined) {
+            return
+          }
+          this.setState({open})
         }
-        this.setState({open})
       }
+      syncState()
+      subscribe(() => syncState())
+    },
+
+    handleClick (ev) {
+      ev.preventDefault()
+      dispatch(toggleDropdown(this._uid))
+    },
+
+    render ({
+      open,
+      handleClick,
+      Trigger,
+      buttonText = 'Select',
+      noWrapper = false,
+      children
+    }) {
+      const cls = open
+        ? 'dropdown-menu open'
+        : open === false
+          ? 'dropdown-menu close'
+          : 'dropdown-menu'
+      return <div>
+        {Trigger === undefined
+          ? <Button className='btn-dropdown black-ghost-btn' to={handleClick}>
+            <Level noPadding>{buttonText} <DownArrow /></Level>
+          </Button>
+          : <Trigger className='btn-dropdown' onClick={handleClick} />}
+        {noWrapper
+          ? open && children
+          : <div className={cls}>
+            <div class='dropdown-arrow' />
+            {children}
+          </div>}
+      </div>
     }
-    syncState()
-    subscribe(() => syncState())
-  },
-  function handleClick (ev) {
-    ev.preventDefault()
-    dispatch(toggleDropdown(this._uid))
-  },
-  function render ({
-    open,
-    handleClick,
-    Trigger,
-    buttonText = 'Select',
-    noWrapper = false,
-    children
-  }) {
-    const cls = open
-      ? 'dropdown-menu open'
-      : open === false
-        ? 'dropdown-menu close'
-        : 'dropdown-menu'
-    return <div>
-      {Trigger === undefined
-        ? <Button className='btn-dropdown black-ghost-btn' to={handleClick}>
-          <Level noPadding>{buttonText} <DownArrow /></Level>
-        </Button>
-        : <Trigger className='btn-dropdown' onClick={handleClick} />}
-      {noWrapper
-        ? open && children
-        : <div className={cls}>
-          <div class='dropdown-arrow' />
-          {children}
-        </div>}
-    </div>
   }
 )
 

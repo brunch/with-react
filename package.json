@@ -6,7 +6,7 @@
   "version": "0.2.0",
   "repository": "",
   "scripts": {
-    "std": "standard --verbose | snazzy", 
+    "std": "standard --verbose | snazzy",
     "test": "npm run std",
     "watch-js": "watchify app/index.js -o public/app.js",
     "watch-less": "sane 'npm run less' app/stylesheets --glob='**/*.less'",
@@ -15,9 +15,11 @@
     "start": "run-p watch serve",
     "less": "find app/stylesheets/ -name '*.less' -exec lessc {} \\; > public/app.css",
     "postless": "postcss public/app.css --use autoprefixer -o public/app.css",
-    "prebuild:prod": "mkdir -p public && cp -r app/assets/ public/",
-    "build:prod": "browserify app/index.js -p bundle-collapser/plugin -p common-shakeify -t babelify -g uglifyify | uglifyjs -o public/app.js",
-    "postbuild:prod": "cp public/index.html public/200.html"
+    "prebuild": "mkdir -p public && cp -r app/assets/ public/",
+    "build": "browserify app/index.js -p bundle-collapser/plugin -p common-shakeify -t babelify -t rollupify -g uglifyify | uglifyjs -o public/app.js",
+    "postbuild": "cp public/index.html public/200.html",
+    "predeploy": "run-s test build less",
+    "deploy": "surge --d preact-starter.surge.sh -p public/"
   },
   "dependencies": {
     "atom-lens-reducer": "0.2.0",
@@ -50,10 +52,12 @@
     "npm-run-all": "^4.1.2",
     "postcss-cli": "^4.1.1",
     "redux-devtools-extension": "2.13.2",
+    "rollupify": "^0.4.0",
     "sane": "^2.2.0",
     "snazzy": "^7.0.0",
     "split-require": "^2.0.3",
     "standard": "^10.0.3",
+    "surge": "^0.19.0",
     "uglifyify": "^4.0.5",
     "uglifyjs": "^2.4.11",
     "watchify": "^3.9.0"
