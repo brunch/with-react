@@ -1,0 +1,38 @@
+@import (reference) 'variables.less';
+
+.arrow-container {
+  padding: 0;
+  margin: 0;
+  margin-top: -5px;
+  padding-left: @gutter/3;
+
+  &.no-padding {
+    padding-left: 0;  
+  }
+
+  .arrow {
+    border: solid @black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+
+    &.white {
+      border-color: @white;
+    }
+  }
+
+  .arrow-down {
+    transform: rotate(45deg);
+    &.large {
+      border-width: 0px 1px 1px 0px;
+      transform: rotate(45deg) scale(1.8);
+    }
+  }
+
+  .arrow-left {
+    border: solid @black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(135deg);
+    margin-right: 8px;
+  }
+}

@@ -1,0 +1,63 @@
+@import (reference) 'variables.less';
+
+.btn {
+  transition: @transition;
+  display: inline-block;
+  outline: none;
+  background-color: @blue;
+  border: 1px solid @blue;
+  border-radius: @border-radius;
+  padding: @gutter/2 @gutter;
+  color: @white;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: @teal;
+    border-color: @teal;
+    color: @white;
+  }
+
+  &.btn-stretchy {
+    width: 100%;
+  }
+
+  &.btn-medium {
+    padding: @gutter/3 @gutter;
+  }
+
+  &.btn-small {
+    padding: @gutter/4 @gutter/2;
+    font-size: 0.85rem;
+  }
+
+  &.btn-outline {
+    background-color: transparent;
+    border: 1px solid @blue;
+    color: @blue;
+
+    &:hover {
+      color: @white;
+      background-color: @teal;
+      border-color: @teal;
+    }
+  }
+
+  &:active {
+    background-color: @teal;
+    border-color: @teal;
+    transform: translate(0, 2px);
+  }
+
+  &.btn-noupper {
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}

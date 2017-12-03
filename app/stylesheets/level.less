@@ -1,0 +1,48 @@
+@import (reference) 'variables.less';
+
+.level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: @gutter;
+  padding-bottom: @gutter;
+
+  &.no-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &.half-padding {
+    padding-top: @gutter / 2;
+    padding-bottom: @gutter;
+  }
+
+  &.not-spaced {
+    justify-content: center;
+  }
+
+  .level-left,
+  .level-right {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .level-left {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .level-right {
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  & > *:not(.level-right) {
+    margin-right: .75rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

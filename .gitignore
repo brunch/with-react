@@ -16,6 +16,7 @@
 .project
 .settings
 .tmproj
+.tern-port
 nbproject
 Thumbs.db
 
