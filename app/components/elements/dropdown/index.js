@@ -77,7 +77,7 @@ const Dropdown = compose(
         : 'dropdown-menu'
     return <div>
       {Trigger === undefined
-        ? <Button className='btn-dropdown black-ghost-btn' to={handleClick}>
+        ? <Button className='btn-dropdown black-ghost-btn' onClick={handleClick}>
           <Level noPadding>{buttonText} <DownArrow /></Level>
         </Button>
         : <Trigger className='btn-dropdown' onClick={handleClick} />}
