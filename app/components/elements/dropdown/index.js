@@ -77,10 +77,10 @@ const Dropdown = compose(
         : 'dropdown-menu'
     return <div>
       {Trigger === undefined
-        ? <Button className='btn-dropdown black-ghost-btn' onClick={handleClick}>
+        ? <Button className='btn btn-dropdown black-ghost-btn' onClick={handleClick}>
           <Level noPadding>{buttonText} <DownArrow /></Level>
         </Button>
-        : <Trigger className='btn-dropdown' onClick={handleClick} />}
+        : <Trigger className='btn btn-dropdown' onClick={handleClick} />}
       {noWrapper
         ? open && children
         : <div className={cls}>

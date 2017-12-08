@@ -12,7 +12,6 @@ import {
   TextField
 } from '/components/elements/form'
 import {Row, Column} from '/components/elements/grid'
-import Link from '/components/elements/link'
 import Page from '/components/elements/page'
 import PageTitle from '/components/elements/page-title'
 
@@ -28,7 +27,7 @@ const OpenModal = pipe(
   }),
   ({handleClick, modals}) =>
     <div>
-      <Button to={handleClick}>Win!</Button>
+      <Button onClick={handleClick}>Win!</Button>
     </div>
 )
 
@@ -41,8 +40,8 @@ const Home = ({url, modals = {}}) =>
       <h1>Hello World</h1>
       <Card className='elevated hover-scale'>
         <p>{url}</p>
-        <Link to='http://google.ca'>Google</Link>
-        <Button to='http://news.ycombinator.com'>Hacker News</Button>
+        <a href='http://google.ca'>Google</a>
+        <a className='btn' href='http://news.ycombinator.com'>Hacker News</a>
       </Card>
       <div class='spaced'>
         <h2>Dropdown</h2>
@@ -63,7 +62,7 @@ const Home = ({url, modals = {}}) =>
           </FormHeading>
 
           <FieldSet>
-            <Button className='btn-outline'>Sign In with Google</Button>
+            <Button className='btn btn-outline'>Sign In with Google</Button>
           </FieldSet>
 
           <div class='or'>
@@ -76,7 +75,7 @@ const Home = ({url, modals = {}}) =>
           </FieldSet>
 
           <FieldSet className='submit'>
-            <Button type='submit'>Sign In</Button>
+            <Button type='submit' className='btn'>Sign In</Button>
           </FieldSet>
         </Form>
       </Card>
