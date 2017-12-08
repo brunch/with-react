@@ -36,7 +36,7 @@ const Home = ({url, modals = {}}) =>
     <PageTitle title='With Preact'>
       <OpenModal modals={modals} />
     </PageTitle>
-    <div style='max-width: 640px; margin: 1rem auto;'>
+    <div className='intro' style='max-width: 640px; margin: 1rem auto;'>
       <h1>Hello World</h1>
       <Card className='elevated hover-scale'>
         <p>{url}</p>
