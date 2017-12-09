@@ -18,7 +18,6 @@ const renderIndex = (data, response) =>
 http.createServer((request, response) => {
   const search = url.parse(request.url).search
   const parsed = queryString.parse(search)
-  console.log('parsed', parsed)
 
   let filePath = './public' + request.url
   if (filePath === './public/') {

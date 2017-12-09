@@ -38,6 +38,7 @@
     "redux": "3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "throttle-debounce": "1.0.1",
+    "uglify-js-brunch": "^2.10.0",
     "wasmuth": "1.5.0"
   },
   "devDependencies": {

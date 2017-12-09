@@ -38,5 +38,10 @@ exports.plugins = {
       }],
       ['transform-react-jsx', {'pragma': 'Preact.h'}]
     ]
+  },
+  uglify: {
+    mangle: false,
+    keep_fnames: true,
+    compress: false
   }
 }
