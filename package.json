@@ -1,25 +1,60 @@
 {
   "name": "brunch-app",
-  "description": "Brunch.io application",
+  "description": "Brunch.io application with Preact, Atom, LESS modules and Babel.",
   "private": true,
-  "author": "Brunch",
-  "version": "0.0.1",
+  "author": "Adrian Unger",
+  "version": "0.1.0",
   "repository": "",
   "scripts": {
-    "start": "brunch watch --server",
-    "build": "brunch build --production"
+    "preinstall": "if test \"$NODE_ENV\" = \"production\"; then rm -rf public; mkdir public; fi",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then npm run build; fi",
+    "start": "if test \"$NODE_ENV\" = \"production\"; then npm run serve; else npm run dev; fi",
+    "dev": "run-p watch serve",
+    "serve": "node server",
+    "watch": "brunch watch",
+    "build": "brunch build --production",
+    "test": "npm run std",
+    "std": "standard --verbose | snazzy"
   },
   "dependencies": {
-    "react": "^15.4",
-    "react-dom": "^15.4"
+    "atom-lens-reducer": "0.2.0",
+    "auto-reload-brunch": "^2.7.1",
+    "babel-brunch": "~6.1",
+    "babel-plugin-jsx-import": "staydecent/babel-plugin-jsx-import",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "~6.24",
+    "brunch": "^2",
+    "check-arg-types": "1.1.0",
+    "classless-component": "0.1.0",
+    "ejs": "^2.5.7",
+    "less-brunch": "^2.10.0",
+    "preact": "8.2.6",
+    "preact-portal": "1.1.2",
+    "preact-router": "2.6.0",
+    "query-string": "^5.0.1",
+    "redux": "3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "throttle-debounce": "1.0.1",
+    "uglify-js-brunch": "^2.10.0",
+    "wasmuth": "1.5.0"
   },
   "devDependencies": {
-    "auto-reload-brunch": "^2",
-    "babel-brunch": "~6.0",
-    "babel-preset-latest": "^6",
-    "babel-preset-react": "~6.22",
-    "brunch": "^2",
-    "clean-css-brunch": "^2",
-    "uglify-js-brunch": "^2"
+    "npm-run-all": "^4.1.2",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3"
+  },
+  "engines": {
+    "node": "8.9.x"
+  },
+  "standard": {
+    "globals": [
+      "Preact"
+    ],
+    "ignore": [
+      "build"
+    ]
   }
 }

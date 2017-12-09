@@ -1,0 +1,56 @@
+@import (reference) 'variables.less';
+
+.carousel {
+  padding: 0 @gutter;
+  display: flex;
+  justify-content: center;
+
+  .card-carousel-content {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    flex-wrap: nowrap;
+
+    .slides {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      justify-content: flex-start;
+      width: 400px;
+
+      > div {
+        width: 100%;
+        transition: all .2s ease-in-out;
+
+        a {
+          text-decoration: none;
+          display: block;
+        }
+      }
+    }
+
+    nav {
+      a {
+        &:first-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.carousel-btn {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: orange;
+  transition: @transition;
+
+  &:hover {
+    opacity: .7;
+  }
+}
