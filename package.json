@@ -10,13 +10,13 @@
     "build": "brunch build --production"
   },
   "dependencies": {
-    "react": "^15.4",
-    "react-dom": "^15.4"
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "babel-brunch": "~6.0",
-    "babel-preset-latest": "^6",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "~6.22",
     "brunch": "^2",
     "clean-css-brunch": "^2",
